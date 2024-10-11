@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template
 import requests
 import os
 from time import sleep
@@ -13,7 +13,7 @@ HEADERS = {
     'Connection': 'keep-alive',
     'Cache-Control': 'max-age=0',
     'Upgrade-Insecure-Requests': '1',
-    'User   -Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
@@ -90,18 +90,9 @@ def send_message():
         thread = threading.Thread(target=send_messages)
         thread.start()
 
-        return render_template_string('''
-        <!-- index.html -->
-        <form action="/stop" method="post">
-            <button type="submit">Stop</button>
-        </form>
-        ''')
+        return render_template('index.html')
 
-@app.route('/stop', methods=['POST'])
-def stop():
-    stop_thread.set()
-    return 'Stopped'
+    return render_template('index.html')
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=5000)
