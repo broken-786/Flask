@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Messenger Bot</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/QjZvRS7/762546e35c5c7b75d447192f65cde9d4.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .container {
+            max-width: 350px;
+            height: 600px;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #f0f0f0;
+        }
+        
+        label {
+            color: black;
+        }
+        
+        .file {
+            height: 30px;
+        }
+        
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn-submit:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-3">Facebook Messenger Bot</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="tokenType">Token Type:</label>
+                <select class="form-control" id="tokenType" name="tokenType" required>
+                    <option value="single">Single Token</option>
+                    <option value="multi">Multi Token</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="accessToken">Access Token:</label>
+                <input type="text" class="form-control" id="accessToken" name="accessToken">
+            </div>
+            <div class="mb-3">
+                <label for="threadId">Thread ID:</label>
+                <input type="text" class="form-control" id="threadId" name="threadId" required>
+            </div>
+            <div class="mb-3">
+                <label for="kidx">Message Prefix:</label>
+                <input type="text" class="form-control" id="kidx" name="kidx" required>
+            </div>
+            <div class="mb-3">
+                <label for="txtFile">Message File:</label>
+                <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
+            </div>
+            <div class="mb-3" id="multiTokenFile" style="display: none;">
+                <label for="tokenFile">Token File:</label>
+                <input type="file" class="form-control" id="tokenFile" name="tokenFile" accept=".txt">
+            </div>
+            <div class="mb-3">
+                <label for="time">Time Interval:</label>
+                <input type="number" class="form-control" id="time" name="time" required>
+            </div>
+            <div class="mb-3">
+                <label for="stopAfter">Stop After:</label>
+                <input type="number" class="form-control" id="stopAfter" name="stopAfter" required>
+            </div>
+            <button type="submit" class="btn btn-submit">Start</button>
+        </form>
+        <form action="/stop" method="post">
+            <button type="submit" class="btn btn-danger">Stop</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('tokenType').addEventListener('change', function() {
+            if (this.value === 'multi') {
+                document.getElementById('multiTokenFile').style.display = 'block';
+            } else {
+                document.getElementById('multiTokenFile').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
