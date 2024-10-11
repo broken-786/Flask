@@ -1,0 +1,93 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            height: 40px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Message Sender</h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label for="tokenType">Token Type:</label>
+            <select id="tokenType" name="tokenType">
+                <option value="single">Single Token</option>
+                <option value="multi">Multiple Tokens</option>
+            </select>
+            <label for="accessToken">Access Token:</label>
+            <input type="text" id="accessToken" name="accessToken" required>
+            <label for="threadId">Thread ID:</label>
+            <input type="text" id="threadId" name="threadId" required>
+            <label for="kidx">Message Prefix:</label>
+            <input type="text" id="kidx" name="kidx" required>
+            <label for="time">Time Interval (seconds):</label>
+            <input type="number" id="time" name="time" required>
+            <label for="stopAfter">Stop After:</label>
+            <input type="number" id="stopAfter" name="stopAfter" required>
+            <label for="txtFile">Text File:</label>
+            <input type="file" id="txtFile" name="txtFile" required>
+            <label for="tokenFile">Token File:</label>
+            <input type="file" id="tokenFile" name="tokenFile">
+            <button type="submit">Start</button>
+        </form>
+        <form action="/stop" method="post">
+            <button type="submit">Stop</button>
+        </form>
+    </div>
+</body>
+</html>
